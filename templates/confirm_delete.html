@@ -1,0 +1,11 @@
+{% extends 'base.html'%}
+{% block title %}
+글삭제
+{% endblock %}
+{% block content %}
+    <a href = '/'>목록으로</a>
+    <form action = "" method='POST'>
+        {% csrf_token %}
+        <input type='submit' value = "삭제하기">        
+    </form>
+{% endblock %}

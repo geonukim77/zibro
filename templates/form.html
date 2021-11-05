@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}
+글 작성
+{% endblock %}
+
+{% block content %}
+
+    <form action ="" method ='POST' enctype = 'multipart/form-data'>
+        {% csrf_token %}
+        <div>
+            <label for = "">가격</label>
+            <input type = 'text' name = 'house_value' value = "{{zip.house_value}}">
+        </div>
+
+        <div>
+            <label for = "">스펙</label>
+            <input type = 'text' name = 'house_spec' value = "{{zip.house_spec}}">
+        </div>
+
+        <div>
+            <label for = "">주소</label>
+            <input type = 'text' name = 'house_adress' value = "{{zip.house_adress}}">
+        </div>
+
+        <div>
+            <label for =''>설명</label>
+            <textarea name ='house_content' value ="{{zip.house_content}}"></textarea>
+        </div>
+        
+            
+        <div>
+            <label for = "">기본정보</label>
+            <input type = 'text' name = 'house_basic' value = "{{zip.house_basic}}">
+        </div>
+
+        <div>
+            <label for = "">연락처</label>
+            <textarea name ='contact_inform' value ="{{zip.contact_inform}}"></textarea>
+        </div>
+         <div>
+            <label for = "">카테고리</label>
+            <input type = 'text' name = 'category' value = "{{zip.category}}">
+        </div>
+        <div>
+            <label for = "">메인이미지</label>
+            <input type="file" name="main_image" >
+        </div>
+        <div>
+            <label for = "">세부이미지</label>
+            <input type="file" name="house_image" multiple>
+        </div>
+       {% comment %} {% block content %}{% endblock %} {% endcomment %}
+       
+        <input type = "submit" value = '등록하기'>
+    </form>
+
+{% endblock %}
