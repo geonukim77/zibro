@@ -8,12 +8,12 @@
      
     <div style ="text-align: left; margin: 0px 160px 0px 160px;">
       
-      <a href="{% url 'zips:search' '전체' %}" class = "btn btn-outline-success">전체</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="{% url 'zips:search' '경기도' %}" class = "btn btn-outline-success">경기도</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="{% url 'zips:search' '인천시'%}" class = "btn btn-outline-success">인천시</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="{% url 'zips:search' '강원도'%}" class = "btn btn-outline-success">강원도</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="{% url 'zips:search' '충청북도'%}" class = "btn btn-outline-success">충청북도</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="{% url 'zips:search' '충청남도'%}" class = "btn btn-outline-success">충청남도</a>
+      <a href="{% url 'zips:search' '전체' %}" class = "btn btn-outline-success" style ="width: 100px;">전체</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="{% url 'zips:search' '경기도' %}" class = "btn btn-outline-success" style ="width: 100px;">경기도</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="{% url 'zips:search' '인천시'%}" class = "btn btn-outline-success" style ="width: 100px;">인천시</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="{% url 'zips:search' '강원도'%}" class = "btn btn-outline-success" style ="width: 100px;">강원도</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="{% url 'zips:search' '충청북도'%}" class = "btn btn-outline-success" style ="width: 100px;">충청북도</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      <a href="{% url 'zips:search' '충청남도'%}" class = "btn btn-outline-success" style ="width: 100px;">충청남도</a>
       <hr style="border: solid 3px #000000;">
     </div>
     
@@ -27,7 +27,7 @@
               <div class="card-body">
                 <a href="{% url "zips:detail" zip.id %}" class="card-link">
                   {% if zip.main_image %}
-                  <img src="{{zip.main_image.url}}" class="card-img-top embed-responsive-item" style="width: 480px; height: 360px;" alt="tree">
+                  <img src="{{zip.main_image.url}}" class="card-img-top embed-responsive-item" style="height: 360px;" alt="tree">
                   {% endif %}
                 </a>
                   <!-- photo.zip.main_image인 이유는 zip클래스 안에 속성값을 가리키려면 photo 클래스 안에 zip 클래스가 존재함으로 photo에 접근하고 zip에 접근해 속성값을 읽어온다.-->

@@ -6,7 +6,7 @@
 <div style ="text-align: left ; margin: 0px 160px 0px 160px;">
 {% comment %} <hr style="border: solid 3px #000000;"> {% endcomment %}
 
-    <div style ="border:1px solid black; padding:20px; text-align: left ;  margin: 190px 600px 190px 600px; ">
+    <div style ="border:1px solid #D5D5D5; padding:20px; text-align: left ;  margin: 190px 600px 190px 600px; ">
     <h2>로그인</h2>
     <form action = "" method="POST">
     {% csrf_token %}
@@ -42,9 +42,7 @@
     </form>
 </div> {% endcomment %}
 
-{% if error %}
-{{error}}
-{% endif %}
+
 
 
 

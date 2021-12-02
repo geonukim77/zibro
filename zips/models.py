@@ -29,6 +29,11 @@ class Zip(models.Model):
         verbose_name='업데이트 날짜'
         )
 
+    created_by = models.CharField(    
+        verbose_name='작성자',
+        max_length=80, null=True
+     )
+
     house_basic = models.TextField(
         verbose_name='기본정보'
         )
@@ -44,12 +49,12 @@ class Zip(models.Model):
         )
     
     main_image = models.ImageField(
-        upload_to='images/', null=True, blank=True
+        upload_to='media/images', null=True, blank=True
         )
 
     category = models.CharField(max_length=15, default='경기도') 
 
 class Photo(models.Model):
     zip = models.ForeignKey(Zip, on_delete=models.CASCADE, null=True)
-    house_image = models.ImageField(upload_to='images/', null=True, blank=True)
+    house_image = models.ImageField(upload_to='media/images/', null=True, blank=True)
     

@@ -14,7 +14,4 @@ class ZipAdmin(admin.ModelAdmin):
     search_fields = ['id', 'house_value','house_value', 'house_spec', 'house_adress', 'house_content','house_basic', 'contact_inform' ]
   # Post 클래스는 해당하는 Photo 객체를 리스트로 관리하는 한다. 
     inlines = [PhotoInline, ]
-    
-
-# # Register your models here.
-# admin.site.register(Zip, ZipAdmin)
+  

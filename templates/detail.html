@@ -78,9 +78,14 @@
                     {{zip.contact_inform}}<br><br>
                 </div>
                 <div style="background:white; margin-left: 20px">
-                    <a href = "{% url 'zips:list' %}">목록보기</a>
-                    <a href = "{% url 'zips:update' zip.id %}">수정하기</a>
-                    <a href = "{% url 'zips:delete' zip.id %}">삭제하기</a>
+                    
+                {% if author %}
+                    <a href = "{% url 'zips:update' zip.id %}" class = " btn btn-success">수정하기</span>
+                    </a>&nbsp;&nbsp;&nbsp;
+                    <a href = "{% url 'zips:delete' zip.id %}" class = " btn btn-danger">삭제하기</span>
+                    </a>
+                {% endif %}
+
                     {% comment %} <a href="{% url 'index' %}"></a> 이렇게만 표현해주면 index.html 화면으로 넘어가집니다. {% endcomment %}
             
                 </div>

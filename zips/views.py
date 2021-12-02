@@ -23,19 +23,15 @@ def create(request):
 
         if 'main_image' in request.FILES:
             main_image = request.FILES['main_image']
+        else :
+            return redirect('zips:create')
+            # redirect는 view.py로 이동함
         
+        category = request.POST.get('category',False)
+        #MultiValueDictKeyError는 get방식 사용(False 안넣으면 error)
 
-        #  # name 속성이 imgs인 input 태그로부터 받은 파일들을 반복문을 통해 하나씩 가져온다 
-        # for img in request.FILES.getlist('imgs'):
-        #     # Photo 객체를 하나 생성한다.
-        #     photo = Photo()
-        #     # 외래키로 현재 생성한 Post의 기본키를 참조한다.
-        #     photo.zip = zip
-        #     # imgs로부터 가져온 이미지 파일 하나를 저장한다.
-        #     photo.image = img
-        #     # 데이터베이스에 저장
-        #     photo.save()
-
+        #created_by = request.get('username')
+        
         #2. 매물 게시글 작성
         zip = Zip.objects.create(
             house_value = house_value,
@@ -43,45 +39,44 @@ def create(request):
             house_adress = house_adress,
             house_content = house_content,
             created_at = datetime.datetime.now(),
+            #created_by = created_by,
+            
             house_basic =  house_basic,
             contact_inform = contact_inform,
-            main_image = main_image
+            main_image = main_image,
+            category = category,
 
         )
-        zip.save()
-            
-            # name 속성이 imgs인 input 태그로부터 받은 파일들을 반복문을 통해 하나씩 가져온다 
-        # for img in request.FILES.getlist('house_image'):
-        #     # Photo 객체를 하나 생성한다.
-        #     photo = Photo()
-        #     # 외래키로 현재 생성한 Post의 기본키를 참조한다.
-        #     photo.zip = zip
-        #     # imgs로부터 가져온 이미지 파일 하나를 저장한다.
-        #     photo.image = img
-        #     # 데이터베이스에 저장
-        #     photo.save()
-        
+        zip.save()            
+       
         if 'house_image' in request.FILES:
-            house_image = request.FILES['house_image'] 
-            photo = Photo.objects.create(zip = zip, house_image = house_image)
+            for house_image in request.FILES.getlist('house_image'):
+                photo = Photo.objects.create(zip = zip, house_image = house_image)
             photo.save()
+        
+        else :
+            return redirect('zips:create')
 
-
-        # if request.FILES['house_image']:
-        #     photo = Photo.objects.create(zip = zip, house_image = request.FILES['house_image'])
-        #     photo.save()
-
-        return redirect('zips:card')
+        return redirect('zips:list')
     
     else:
         return render(request, 'form.html')
+        # redirect는 html로 이동함
 
 
 def detail(request, id):
     #1. 사용자에게 전달받은 값으로 데이터 조회
     zip = Zip.objects.get(id=id)
     photo_all = Photo.objects.filter(zip=zip)
-    context = {"zip" : zip, "photo_all" : photo_all}
+    create_zip=zip.created_by
+    request_zip=str(request.user)
+
+    if create_zip == request_zip:
+        author = True
+    else:
+        author = False
+   
+    context = {"zip" : zip, "photo_all" : photo_all,'author':author}
     #2. 응답
     return render(request, 'detail.html', context)
 
@@ -91,7 +86,7 @@ def list(request):
     zip_all = Zip.objects.all().order_by('-id')
 
     # 12개씩 페이지를 바꿈 -> 18개로 바꿀것
-    paginator = Paginator(zip_all,18)
+    paginator = Paginator(zip_all,9)
 
     #get 방식으로 정보를 받아오는 데이터
     page = request.GET.get('page')
@@ -109,34 +104,53 @@ def update(request, id):
         #1. 사용자에게 전달받은 값 데이터 조회
         zip = Zip.objects.get(id=id) #(필드명 =값)안은 조건(필드명이 값이 경우)
 
-        #2. 사용자에게 전달받은 값 확인
-        #house_number = request.POST['house_number']
+        #1. 클라이언트에서 받은 값 변수 생성
         house_value = request.POST['house_value']
         house_spec = request.POST['house_spec']
         house_adress = request.POST['house_adress']
         house_content = request.POST['house_content']
         house_basic = request.POST['house_basic']
         contact_inform = request.POST['contact_inform']
-        #house_photo = request.POST['house_photo']
 
-        #3. 사용자에게 전달받은 값 수정
-        #zip.house_number = house_number
-        zip.house_value = house_value
-        zip.house_spec = house_spec
-        zip.house_adress = house_adress
-        zip.house_content = house_content
-        zip.house_basic = house_basic
-        zip.contact_inform = contact_inform
-        #zip.house_photo = house_photo
-        zip.save()
+        if 'main_image' in request.FILES:
+            main_image = request.FILES['main_image']
+        else :
+            return redirect('zips:create')
+            # redirect는 view.py로 이동함
+        
+        category = request.POST.get('category',False)
+        #MultiValueDictKeyError는 get방식 사용(False 안넣으면 error)
+        
+        #2. 매물 게시글 작성
+        zip = Zip.objects.create(
+            house_value = house_value,
+            house_spec = house_spec,
+            house_adress = house_adress,
+            house_content = house_content,
+            created_at = datetime.datetime.now(),
+            house_basic =  house_basic,
+            contact_inform = contact_inform,
+            main_image = main_image,
+            category = category,
 
-        #3. 응답
+        )
+        zip.save()            
+       
+        if 'house_image' in request.FILES:
+            for house_image in request.FILES.getlist('house_image'):
+                photo = Photo.objects.create(zip = zip, house_image = house_image)
+            photo.save()
+
+        else :
+            return redirect('zips:update')
+
         return redirect('zips:detail', zip.id)
     elif request.method == "GET":
         zip = Zip.objects.get(id=id)
         context = {"zip" : zip}
         return render(request, 'form.html', context)
 
+ 
 def delete(request, id):
     if request.method =="POST":
         zip = Zip.objects.get(id=id)
@@ -183,7 +197,7 @@ def search(request, category):
     #     zip_list = Zip.objects.filter(category=category).order_by('-id')     
     
     # 12개씩 페이지를 바꿈 -> 18개로 바꿀것
-    paginator = Paginator(zip_list,18)
+    paginator = Paginator(zip_list,9)
     
      #get 방식으로 정보를 받아오는 데이터
     page = request.GET.get('page')
