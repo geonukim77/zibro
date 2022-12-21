@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+매물목록
+{% endblock %}
+
+{% block content %}
+
+<h1> 매물목록</h1>
+<table class = "table table-striped">
+    <tr>
+        <td>매물번호</td>
+        <td>가격</td>
+        <td>스펙</td>
+        <td>주소</td>
+        <td>설명</td>
+        <td>업데이트 날짜</td>
+        <td>기본정보</td>
+        <td>연락처</td>
+    </tr>
+    <br>
+    {% for zip in zip_all %}  
+     <tr>
+        <td><a href = "{% url "zips:detail" zip.id %}">{{ zip.id }}</a></td>
+        <td>{{ zip.house_value }}</td>
+        <td>{{ zip.house_spec }}</td>
+        <td>{{ zip.house_address}}</td>  
+        <td>{{ zip.house_content}}</td>  
+        <td>{{ zip.created_at}}</td>  
+        <td>{{ zip.house_basic}}</td>  
+        <td>{{ zip.contact_inform}}</td>  
+        
+     </tr> 
+     <br> 
+     {% endfor %}  
+    {% comment %} <a href="{% url 'index' %}"></a> 이렇게만 표현해주면 index.html 화면으로 넘어가집니다. {% endcomment %}
+</table>
+{% endblock %}

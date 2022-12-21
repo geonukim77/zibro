@@ -1,0 +1,66 @@
+
+header{
+    /* position: relative; */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+  
+    height : 90px;
+    width : 100%;
+    background-color:rgb(1, 192, 255);
+    z-index: 10;
+}
+.logo {
+    height: 50px;
+    display : flex;
+    justify-content : center;
+    align-items: conter;
+    padding : 15px 0;
+
+}
+
+.top_menu {
+    height:40px;
+    text-align: right;
+    padding :10px 30px 10px 10px;
+}
+
+
+nav{
+    width: 200px;
+    /*위치고정*/
+    position : fixed;
+    
+    float:left;
+    padding-top : 80px;
+    
+    margin: 5px auto 20px auto;
+}
+
+section {
+    max-width: 1500px;
+    /* width: 95%; */
+    padding: 100px 20px 20px 200px;
+    margin: 20px auto 0px auto;
+
+    /* 보는 순서 정하기(z-index) */
+    z-index: 20; 
+    
+
+}
+  
+
+footer{
+    /* background-color:rgb(167, 210, 226); */
+    padding : 2px;
+}
+#navbutton {
+    width: 160px;
+    margin : 8px 15px 8px 15px;
+}
+
+/* .card{
+    box-shadow: 2px 2px 2px rgb(209, 207, 207);
+
+} */

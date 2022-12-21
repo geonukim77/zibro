@@ -1,0 +1,15 @@
+{% extends 'base.html'%}
+{% block title %}
+글삭제
+{% endblock %}
+{% block content %}
+    <div style ="border:1px solid #D5D5D5; padding:20px; text-align: center ;  margin: 120px 300px 30px 300px; ">
+    <br><br><br><br><br><br><br><br><h5>정말로 삭제하시겠습니까?</h5><br><br><br><br><br><br>
+    {% comment %} <a href = '/'>목록으로</a> {% endcomment %}
+    <form action = "" method='POST'>
+        {% csrf_token %}
+        <input type='submit' class = " btn btn-danger" value = "삭제하기">        
+    </form><br>
+    <a href="javascript:history.back();" class = " btn btn-success">뒤로가기</a>
+    </div>
+{% endblock %}

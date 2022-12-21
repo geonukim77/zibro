@@ -1,0 +1,82 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+
+    <title>
+        {% block title %}
+        {% endblock %}ZIBHO
+    </title>
+
+    <link rel="stylesheet" type="text/css" href="{%static 'css/main.css' %}">
+
+
+
+<!--헤더부분-->
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+
+    
+    <header>
+        <div id="logo" class="logo">
+            <!-- <image src = "" alt = "Logo"> -->
+            <!-- <img src="../static/image/로고.png" style="height:30px">&nbsp; -->
+            <a href="{% url 'home' %}" style="text-decoration:none;">
+                <h1 style="color: white">ZIBHO</h1>
+            </a>
+
+        </div>
+
+        <div id="top_menu" class="top_menu">
+            {% if user.is_authenticated %}
+            <a href="{% url 'zips:create' %}" style="text-decoration:none;">
+                <span style="color:white">찜한 매물</span>
+            </a>
+            <span style = "color:white">|</span>
+            <a href="{% url 'zips:create' %}" style="text-decoration:none;">
+                <span style="color:white">매물올리기</span>
+            </a>
+            <span style = "color:white">|</span>
+            <a href="{% url 'accounts:logout' %}" style="text-decoration:none;">
+                <span style="color:white">로그아웃</span>
+            </a>
+            {% else %}
+            <a href="{% url 'accounts:login' %}" style="text-decoration:none;">
+                <span style="color:white">로그인</span>
+            </a> 
+            <span style = "color:white">|</span>
+            <a href="{% url 'accounts:signup' %}" style="text-decoration:none;">
+                <span style="color:white">회원가입</span>
+            </a>
+            {% endif %}
+        </div>
+    </header>
+
+
+
+    {% block content %}{% endblock %}
+    <hr>
+    <footer style="text-align: center; color: grey; margin: 0px 0px 0px 0px;">
+        <span style="font-size:120%">(주)이알사티</span><br>
+        <span style="font-size:90%">주소 : 경기도 하남시 미사강변대로 122 1층 대표자 김건우</span><br>
+        <span style="font-size:90%"> 사업자번호 : 000-000-000 부동산번호 제415120-000-0000호</span><br>  
+        <span style="font-size:90%">전화번호: 031-111-0000 팩스 : 031-111-0000</span>
+    </footer>
+
+</body>
+
+</html>

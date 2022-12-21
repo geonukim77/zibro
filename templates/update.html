@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+{% block title %}
+매물올리기
+{% endblock %}
+
+{% block content %}
+
+<div style="border:1px solid #D5D5D5; padding:20px; text-align: left ;  margin: 120px 300px 20px 300px; ">
+    <h2>매물수정하기</h2>
+
+    <form action="" method='POST' enctype='multipart/form-data'>
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="" class="form-label">가격</label>
+            <input type="text" class="form-control" name="house_value" value="{{zip.house_value}}">
+            <div class="form-text">예 : 50,000만원</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">스펙</label>
+            <input type="text" class="form-control" name="house_spec" value="{{zip.house_spec}}">
+            <div class="form-text">예 : 방3, 화장실2, 2층</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">주소</label>
+            <input type="text" class="form-control" name="house_address" value="{{zip.house_address}}">
+            <div class="form-text">예 : 경기도 하남시 망월동 112번지</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">설명</label>
+            <textarea rows="5" cols="30" class="form-control" name="house_content" value="{{zip.house_content}}">{{zip.house_content}}</textarea>
+            <div class="form-text">예 : 2층 벽돌집으로 타운하우스 30가구가 한단지를 ~</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">기본정보</label>
+            <textarea rows="3" cols="30" class="form-control" name="house_basic" value="{{zip.house_basic}}">{{zip.house_basic}}</textarea>
+            <div class="form-text">예 : 주택면적/대지면적 : 약36평/약 300평 2017년 신축 속초IC 10분거리, 봉토, 천진해변과 속초 IC 중간정도에 위치</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">연락처</label>
+            <input type="text" class="form-control" name='contact_inform' value="{{zip.contact_inform}}">
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">카테고리</label>
+            <select name='category'>
+                <option class="form-control" value="경기도">경기도</option>
+                <option class="form-control" value="인천시">인천시</option>
+                <option class="form-control" value="강원도">강원도</option>
+                <option class="form-control" value="충청북도">충청북도</option>
+                <option class="form-control" value="충청남도">충청남도</option>
+                <option class="form-control" value="전라북도">전라북도</option>
+                <option class="form-control" value="전라남도">전라남도</option>
+                <option class="form-control" value="경상북도">경상북도</option>
+                <option class="form-control" value="경상남도">경상남도</option>
+                <option class="form-control" value="제주도">제주도</option>
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">메인이미지</label>
+            <input type="file" class="form-control" name='main_image' value="{{zip.main_image}}">
+            <div class="form-text">전경사진 입력해주세요</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="" class="form-label">세부이미지</label>
+            <input type="file" class="form-control" name="sub_image" multiple value="{{photo.sub_image}}">
+            <div class="form-text">여러장의 사진을 한꺼번에 입력 가능</div>
+        </div>
+
+        <button type="submit" value="등록하기" class="btn btn-primary">수정등록</button>
+
+    </form>
+
+    {% if error %}
+    {{error}}
+    {% endif %}
+</div>
+
+{% endblock %}
