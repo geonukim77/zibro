@@ -24,6 +24,28 @@ def scrap(request, id):
         
     return redirect('zips:detail', zip.id)
 
+def scrap_list(request):
+    scrap_list = Scrap.objects.filter(user = request.user).order_by('-id')
+    # main_image = scrap_list.zip.main_image.all()
+
+    # 12개씩 페이지를 바꿈 -> 18개로 바꿀것
+    paginator = Paginator(scrap_list,3)
+    max_index = len(paginator.page_range)
+
+    #get 방식으로 정보를 받아오는 데이터
+    page = request.GET.get('page')
+
+    # 페이지를 받아 해당페이지를 리턴
+    page_obj = paginator.get_page(page)
+    
+    context = {
+        'scrap_list': scrap_list, 
+        'page_obj': page_obj, 
+        'max_index' : max_index
+        }
+
+    return render(request, 'scrap.html', context) 
+
 
 
 #게시글 작성 HTML 응답
@@ -110,7 +132,7 @@ def list(request):
     zip_all = Zip.objects.all().order_by('-id')
 
     # 12개씩 페이지를 바꿈 -> 18개로 바꿀것
-    paginator = Paginator(zip_all,12)
+    paginator = Paginator(zip_all,3)
     max_index = len(paginator.page_range)
 
     #get 방식으로 정보를 받아오는 데이터
@@ -238,7 +260,7 @@ def search(request, category):
         zip_list = Zip.objects.filter(category=category).order_by('-id')     
     
     # 12개씩 페이지를 바꿈 -> 18개로 바꿀것
-    paginator = Paginator(zip_list,12)
+    paginator = Paginator(zip_list,3)
     max_index = len(paginator.page_range)
     
      #get 방식으로 정보를 받아오는 데이터

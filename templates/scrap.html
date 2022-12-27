@@ -6,8 +6,12 @@
 
 {% block content %}
 
-<div style="border:1px solid #D5D5D5; padding:20px; text-align: left ;  margin: 120px 300px 20px 300px; ">
-    <h2>찜한 매물</h2>
+<h2>찜한 매물</h2>
+<h2>찜한 매물</h2>
+<h2>찜한 매물</h2>
+<h2>찜한 매물</h2>
+<div style="border:1px solid #D5D5D5; padding:20px; text-align: left ;  margin: 120px 100px 20px 100px; ">
+<h2>찜한 매물</h2>
 
 <!--카드 부분-->
 <section class="wrap">
@@ -16,8 +20,11 @@
     <div class="col">
       <div class="card" class="embed-responsive embed-responsive-4by3">
         <a href="{% url 'zips:detail' zip.id %}" class="card-link">
-          {% if zip.main_image %}
+          {% if zip %}
+          <h2>yes photo</h2>
           <img src="{{zip.main_image.url}}" class="card-img-top embed-responsive-item" style="height:300px" alt="tree">
+          {% else %}
+          <h2>no photo</h2>
           {% endif %}
         </a>
         <!-- photo.zip.main_image인 이유는 zip클래스 안에 속성값을 가리키려면 photo 클래스 안에 zip 클래스가 존재함으로 photo에 접근하고 zip에 접근해 속성값을 읽어온다.-->

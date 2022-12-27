@@ -64,3 +64,8 @@ footer{
     box-shadow: 2px 2px 2px rgb(209, 207, 207);
 
 } */
+
+a{
+    text-decoration-color: black;
+    text-decoration-line: none;
+}
