@@ -10,22 +10,22 @@
 
 <!-- 메뉴부분 -->
 <nav>
-  <a href="{%url 'zips:search' '전체' %}" id= navbutton class="btn btn-outline-primary">전체</a><br>
-  <a href="{% url 'zips:search' '경기도' %}" id= navbutton class="btn btn-outline-primary">경기도</a><br>
-  <a href="{% url 'zips:search' '강원도'%}" id= navbutton class="btn btn-outline-primary">강원도</a><br>
-  <a href="{% url 'zips:search' '인천시'%}" id= navbutton class="btn btn-outline-primary">인천시</a><br>
-  <a href="{% url 'zips:search' '충청북도'%}" id= navbutton class="btn btn-outline-primary">충청북도</a><br>
-  <a href="{% url 'zips:search' '충청남도'%}" id= navbutton class="btn btn-outline-primary">충청남도</a><br>
-  <a href="{% url 'zips:search' '전라북도'%}" id= navbutton class="btn btn-outline-primary">전라북도</a><br>
-  <a href="{% url 'zips:search' '전라남도'%}" id= navbutton class="btn btn-outline-primary">전라남도</a><br>
-  <a href="{% url 'zips:search' '경상북도'%}" id= navbutton class="btn btn-outline-primary">경상북도</a><br>
-  <a href="{% url 'zips:search' '경상남도'%}" id= navbutton class="btn btn-outline-primary">경상남도</a><br>
-  <a href="{% url 'zips:search' '제주도'%}" id= navbutton class="btn btn-outline-primary">제주도</a><br>
+  <a href="{%url 'zips:search' '전체' %}" id=navbutton class="btn btn-outline-primary">전체</a><br>
+  <a href="{% url 'zips:search' '경기도' %}" id=navbutton class="btn btn-outline-primary">경기도</a><br>
+  <a href="{% url 'zips:search' '강원도'%}" id=navbutton class="btn btn-outline-primary">강원도</a><br>
+  <a href="{% url 'zips:search' '인천시'%}" id=navbutton class="btn btn-outline-primary">인천시</a><br>
+  <a href="{% url 'zips:search' '충청북도'%}" id=navbutton class="btn btn-outline-primary">충청북도</a><br>
+  <a href="{% url 'zips:search' '충청남도'%}" id=navbutton class="btn btn-outline-primary">충청남도</a><br>
+  <a href="{% url 'zips:search' '전라북도'%}" id=navbutton class="btn btn-outline-primary">전라북도</a><br>
+  <a href="{% url 'zips:search' '전라남도'%}" id=navbutton class="btn btn-outline-primary">전라남도</a><br>
+  <a href="{% url 'zips:search' '경상북도'%}" id=navbutton class="btn btn-outline-primary">경상북도</a><br>
+  <a href="{% url 'zips:search' '경상남도'%}" id=navbutton class="btn btn-outline-primary">경상남도</a><br>
+  <a href="{% url 'zips:search' '제주도'%}" id=navbutton class="btn btn-outline-primary">제주도</a><br>
 </nav>
 
 <!--카드 부분-->
 <section class="wrap">
-  <div class="row row-cols-1 row-cols-md-3 g-4" >
+  <div class="row row-cols-1 row-cols-md-3 g-4">
     {% for zip in page_obj %}
     <div class="col">
       <div class="card" class="embed-responsive embed-responsive-4by3">
@@ -33,11 +33,11 @@
           {% if zip.main_image %}
           <img src="{{zip.main_image.url}}" class="card-img-top embed-responsive-item" style="height:300px" alt="tree">
           {% endif %}
-          
-        <!-- photo.zip.main_image인 이유는 zip클래스 안에 속성값을 가리키려면 photo 클래스 안에 zip 클래스가 존재함으로 photo에 접근하고 zip에 접근해 속성값을 읽어온다.-->
+
+          <!-- photo.zip.main_image인 이유는 zip클래스 안에 속성값을 가리키려면 photo 클래스 안에 zip 클래스가 존재함으로 photo에 접근하고 zip에 접근해 속성값을 읽어온다.-->
           <div class="card-body">
-            <h5 class="card-title"  style="color: black"><strong>{{ zip.house_value }}</strong></h5>
-            <h6 class="card-text"  style="color: rgb(105, 102, 102)">{{ zip.house_address}}</h6>
+            <h5 class="card-title" style="color: black"><strong>{{ zip.house_value }}</strong></h5>
+            <h6 class="card-text" style="color: rgb(105, 102, 102)">{{ zip.house_address}}</h6>
             <p class="card-text"><small class="text-muted">{{zip.house_spec}}</small></p>
           </div>
         </a>
@@ -51,47 +51,47 @@
 <br>
 <div>
   <!-- <nav aria-label="Page navigation example"> -->
-    <ul class="pagination justify-content-center">
+  <ul class="pagination justify-content-center">
 
-      <!--이전페이지-->
-      {% if page_obj.has_previous %}
-      <li class="page-item">
-        <a class="page-link" href="?&page={{page_obj.previous_page_number}}">이전</a>
-      </li>
-      <!-- 비활성화 -->
-      {% else %}
-      <li class="page-item disabled">
-        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
-      </li>
-      {% endif %}
+    <!--이전페이지-->
+    {% if page_obj.has_previous %}
+    <li class="page-item">
+      <a class="page-link" href="?&page={{page_obj.previous_page_number}}">이전</a>
+    </li>
+    <!-- 비활성화 -->
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" tabindex="-1" aria-disabled="true" href="#">이전</a>
+    </li>
+    {% endif %}
 
-      <!--페이지리스트-->
-      {% for page_number in page_obj.paginator.page_range %}
-      {%if page_number == page_obj.number%}
-      <li class="page-item active" aria-current="page">
-        <a class="page-link" href="?&page=3{{page_number}}">{{page_number}}
-        </a>
-      </li>
-      {%else%}
-      <li class="page-item">
-        <a class="page-link" href="?&page={{ page_number }}">{{ page_number }}
-        </a>
-      </li>
-      {% endif %}
-      {% endfor %}
+    <!--페이지리스트-->
+    {% for page_number in page_obj.paginator.page_range %}
+    {%if page_number == page_obj.number%}
+    <li class="page-item active" aria-current="page">
+      <a class="page-link" href="?&page=3{{page_number}}">{{page_number}}
+      </a>
+    </li>
+    {%else%}
+    <li class="page-item">
+      <a class="page-link" href="?&page={{ page_number }}">{{ page_number }}
+      </a>
+    </li>
+    {% endif %}
+    {% endfor %}
 
-      <!--다음페이지-->
-      {% if page_obj.has_next %}
-      <li class="page-item">
-        <a class="page-link" href="?&page={{ page_obj.next_page_number }}">다음</a>
-      </li>
-      {% else %}
-      <li class="page-item disabled">
-        <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
-      </li>
-      {% endif %}
+    <!--다음페이지-->
+    {% if page_obj.has_next %}
+    <li class="page-item">
+      <a class="page-link" href="?&page={{ page_obj.next_page_number }}">다음</a>
+    </li>
+    {% else %}
+    <li class="page-item disabled">
+      <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+    </li>
+    {% endif %}
 
-    </ul>
+  </ul>
   <!-- </nav> -->
 </div>
 <br>

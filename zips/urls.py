@@ -14,8 +14,8 @@ urlpatterns = [
 
     path('<int:id>/update/', update, name="update"),
     path('<int:id>/delete/', delete, name="delete"),
-    path('<int:id>/scrap/', scrap, name = "scrap"),
-    path('scrap_list/', scrap_list, name = "scrap_list"),
+    path('<int:id>/scrap/', scrap, name="scrap"),
+    path('scrap_list/', scrap_list, name="scrap_list"),
 
     path('search/<str:category>/', search, name="search"),
 ]

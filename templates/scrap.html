@@ -6,43 +6,38 @@
 
 {% block content %}
 
-<h2>찜한 매물</h2>
-<h2>찜한 매물</h2>
-<h2>찜한 매물</h2>
-<h2>찜한 매물</h2>
 <div style="border:1px solid #D5D5D5; padding:20px; text-align: left ;  margin: 120px 100px 20px 100px; ">
-<h2>찜한 매물</h2>
 
-<!--카드 부분-->
-<section class="wrap">
-  <div class="row row-cols-1 row-cols-md-3 g-4" >
-    {% for zip in page_obj %}
-    <div class="col">
-      <div class="card" class="embed-responsive embed-responsive-4by3">
-        <a href="{% url 'zips:detail' zip.id %}" class="card-link">
-          {% if zip %}
-          <h2>yes photo</h2>
-          <img src="{{zip.main_image.url}}" class="card-img-top embed-responsive-item" style="height:300px" alt="tree">
-          {% else %}
-          <h2>no photo</h2>
-          {% endif %}
-        </a>
-        <!-- photo.zip.main_image인 이유는 zip클래스 안에 속성값을 가리키려면 photo 클래스 안에 zip 클래스가 존재함으로 photo에 접근하고 zip에 접근해 속성값을 읽어온다.-->
-        <div class="card-body">
-          <h5 class="card-title"><strong>{{ zip.house_value }}</strong></h5>
-          <h6 class="card-text">{{ zip.house_address}}</h6>
-          <p class="card-text"><small class="text-muted">{{zip.house_spec}}</small></p>
+
+  <!--카드 부분-->
+  <section class="wrap_scrap">
+    <h2>찜한 매물</h2>
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+      {% for scrap in page_obj %}
+      <div class="col">
+        <div class="card" class="embed-responsive embed-responsive-4by3">
+          <a href="{% url 'zips:detail' scrap.zip.id %}" class="card-link">
+            {% if scrap.zip.main_image %}
+            <img src="{{scrap.zip.main_image.url}}" class="card-img-top embed-responsive-item" style="height:300px"
+              alt="tree">
+            {% endif %}
+          </a>
+          <!-- scrap.zip.main_image인 이유는 zip클래스 안에 속성값을 가리키려면 scrap 클래스 안에 zip 클래스가 존재함으로 scrap에 접근하고 zip에 접근해 속성값을 읽어온다.-->
+          <div class="card-body">
+            <h5 class="card-title"><strong>{{ scrap.zip.house_value }}</strong></h5>
+            <h6 class="card-text">{{ scrap.zip.house_address}}</h6>
+            <p class="card-text"><small class="text-muted">{{scrap.zip.house_spec}}</small></p>
+          </div>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
-  </div>
-</section>
+  </section>
 
-<!-- 페이지나누기 -->
-<br>
-<div>
-  <!-- <nav aria-label="Page navigation example"> -->
+  <!-- 페이지나누기 -->
+  <br>
+  <div>
+    <!-- <nav aria-label="Page navigation example"> -->
     <ul class="pagination justify-content-center">
 
       <!--이전페이지-->
@@ -84,9 +79,9 @@
       {% endif %}
 
     </ul>
-  <!-- </nav> -->
+    <!-- </nav> -->
+  </div>
 </div>
-<br>
 <!-- 
 {% comment %} <ul>
   <li><a href="{% url 'zips:list' %}">게시글 목록</a></li>

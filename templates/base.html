@@ -21,7 +21,7 @@
 
 
 
-<!--헤더부분-->
+    <!--헤더부분-->
 </head>
 
 <body>
@@ -30,7 +30,7 @@
         crossorigin="anonymous"></script>
 
 
-    
+
     <header>
         <div id="logo" class="logo">
             <!-- <image src = "" alt = "Logo"> -->
@@ -42,23 +42,33 @@
         </div>
 
         <div id="top_menu" class="top_menu">
-            {% if user.is_authenticated %}
+            {% if user.is_superuser %}
             <a href="{% url 'zips:scrap_list' %}" style="text-decoration:none;">
                 <span style="color:white">찜한 매물</span>
             </a>
-            <span style = "color:white">|</span>
+            <span style="color:white">|</span>
             <a href="{% url 'zips:create' %}" style="text-decoration:none;">
                 <span style="color:white">매물올리기</span>
             </a>
-            <span style = "color:white">|</span>
+            <span style="color:white">|</span>
             <a href="{% url 'accounts:logout' %}" style="text-decoration:none;">
                 <span style="color:white">로그아웃</span>
             </a>
+
+            {% elif user.is_authenticated %}
+            <a href="{% url 'zips:scrap_list' %}" style="text-decoration:none;">
+                <span style="color:white">찜한 매물</span>
+            </a>
+            <span style="color:white">|</span>
+            <a href="{% url 'accounts:logout' %}" style="text-decoration:none;">
+                <span style="color:white">로그아웃</span>
+            </a>
+
             {% else %}
             <a href="{% url 'accounts:login' %}" style="text-decoration:none;">
                 <span style="color:white">로그인</span>
-            </a> 
-            <span style = "color:white">|</span>
+            </a>
+            <span style="color:white">|</span>
             <a href="{% url 'accounts:signup' %}" style="text-decoration:none;">
                 <span style="color:white">회원가입</span>
             </a>
@@ -73,7 +83,7 @@
     <footer style="text-align: center; color: grey; margin: 0px 0px 0px 0px;">
         <span style="font-size:120%">(주)이알사티</span><br>
         <span style="font-size:90%">주소 : 경기도 하남시 미사강변대로 122 1층 대표자 김건우</span><br>
-        <span style="font-size:90%"> 사업자번호 : 000-000-000 부동산번호 제415120-000-0000호</span><br>  
+        <span style="font-size:90%"> 사업자번호 : 000-000-000 부동산번호 제415120-000-0000호</span><br>
         <span style="font-size:90%">전화번호: 031-111-0000 팩스 : 031-111-0000</span>
     </footer>
 
